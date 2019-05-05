@@ -10,8 +10,9 @@
     <title>Tittle page</title>
     <h:outputStylesheet name = "theme/css/newStyle.css"/>
     <h:outputStylesheet name = "theme/css/style.css"/>
+    <h:outputScript library="js" name="time.js"/>
 </h:head>
-<h:body>
+<h:body onload="updateClock()">
     <div class = "header-style">
         <div id = "name"><b>TRAN TRUNG DUC P3202</b></div>
         <div id = "variant"> Variant </div>
@@ -19,8 +20,11 @@
         <div id = "number"> 20034 </div>
         <br/>
     </div>
-    <h:form>
-        <h:commandButton id="change" value="Go into" action="index1"/>
-    </h:form>
+    <div id = "content">
+        <div id ="time"> </div>
+        <h:form>
+            <h:commandButton id="change" value="Go into" action="index1?faces-redirect=true"/>
+        </h:form>
+    </div>
 </h:body>
 </html>

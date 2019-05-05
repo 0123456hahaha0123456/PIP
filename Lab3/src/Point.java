@@ -53,8 +53,9 @@ public class Point {
         this.valueX = valueX;
     }
 
-    public boolean isOk() {
-        return ok;
+    public String getOk() {
+        if (this.ok) return "true";
+        return  "false";
     }
 
     public void setOk(boolean ok) {

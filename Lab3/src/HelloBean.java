@@ -14,6 +14,10 @@ public class HelloBean implements Serializable {
 
     public LinkedList<Point> getPoints(){ return points; }
 
+    public void setPoints(LinkedList<Point> points) {
+        this.points = points;
+    }
+
     public double getR() {
         return r;
     }
@@ -71,7 +75,7 @@ public class HelloBean implements Serializable {
         }
     }
     public String changePage(){
-        return "result?faces-redirect=true";
+        return "index?faces-redirect=true";
     }
 
 }

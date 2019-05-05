@@ -63,3 +63,8 @@ table.center{
     width : 60%;
     float : left;
 }
+
+#XYRTable{
+    color : #010101;
+    font-size : 0.5cm;
+}

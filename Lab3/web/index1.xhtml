@@ -51,7 +51,7 @@
              <br/>
 
              <h:commandButton id="submit"  onclick="check_value()"  action="#{helloBean.newPoint()}" value="Submit" style="margin: 15px 0 0 0; width: 200px" >
-                 <f:ajax execute="@form" render="@none"/>
+                 <f:ajax execute="@form" render="XYRTable"/>
              </h:commandButton>
              <br/>
              <h:commandButton action="#{helloBean.changePage()}" id="change" value="Go into" />
@@ -61,13 +61,39 @@
               <h:inputHidden id = "CVvalueY" value="#{helloBean.y}"/>
               <h:inputHidden id = "CVvalueR" value="#{helloBean.r}"/>
               <h:commandButton id="CVsubmit" action="#{helloBean.newPoint()}" style="display: none;">
-                  <f:ajax execute="@form" render="@none"/>
+                  <f:ajax execute="@form" render="XYRTable"/>
               </h:commandButton>
          </h:form>
       </div>
 
       <canvas id = "canvas" onclick="clicCanvas('canvas',document.getElementById('form1:valueR').value)" style="background-color:#ffffff; border-radius: 20px;" width="300" height="300" />
+
+       <h:panelGroup id="XYRTable">
+           <h:dataTable value="#{helloBean.points}" var="point">
+               <h:column>
+                   <f:facet name="header">X</f:facet>
+                   #{point.getValueX()}
+               </h:column>
+
+               <h:column>
+                   <f:facet name="header">Y</f:facet>
+                   #{point.getValueY()}
+               </h:column>
+
+               <h:column>
+                   <f:facet name="header">R</f:facet>
+                   #{point.getValueR()}
+               </h:column>
+
+               <h:column>
+                   <f:facet name="header">Result</f:facet>
+                   #{point.getOk()}
+               </h:column>
+
+           </h:dataTable>
+       </h:panelGroup>
    </div>
+
 </h:body>
 </html>
 
