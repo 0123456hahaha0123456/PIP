@@ -1,12 +1,12 @@
 package com.lab4.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
 @Entity
-public class User {
+@Table(name="User")
+public class User implements Serializable {
     public User(){}
 
     @Id
@@ -15,6 +15,15 @@ public class User {
 
     private String username;
     private String password;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Role> role;
+
+    public User(String username, String password, List<Role> role){
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
 
     public long getId() {
         return id;
@@ -28,6 +37,8 @@ public class User {
         return username;
     }
 
+    public List<Role> getRole(){ return role;}
+
     public void setId(long id) {
         this.id = id;
     }
@@ -39,4 +50,6 @@ public class User {
     public void setUsername(String username) {
         this.username = username;
     }
+
+    public void setRole(List<Role> role){this.role = role;}
 }

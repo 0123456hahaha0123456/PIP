@@ -1,10 +1,12 @@
 package com.lab4.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 
 @Entity
-public class Point {
+@Table(name="Point")
+public class Point implements Serializable {
     public Point(){}
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

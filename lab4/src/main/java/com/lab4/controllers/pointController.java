@@ -14,10 +14,7 @@ public class pointController {
     @Autowired
     private PointService pointService;
 
-    @GetMapping(value= "/")
-    public String index(){
-        return "index";
-    }
+
 
     @GetMapping(value="/points")
     public List<Point> points(){
@@ -26,7 +23,6 @@ public class pointController {
 
     @PostMapping(value="/point")
     public String publishPoint(@RequestBody Point point){
-
         pointService.insert(point);
         return "Point was published";
     }

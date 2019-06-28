@@ -8,8 +8,6 @@ import java.util.List;
 
 @Service
 public interface UserRespository extends JpaRepository<User,Long> {
-    List<User> getAllByName(String username);
-
     User findByUserName(String name);
 
 }

@@ -15,11 +15,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(value= "/")
-    public String index(){
-        return "index";
-    }
-
     @GetMapping(value="/users")
     public List<User> userList(){
         return userService.getAllUsers();
