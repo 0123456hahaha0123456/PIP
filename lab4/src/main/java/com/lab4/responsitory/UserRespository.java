@@ -2,12 +2,12 @@ package com.lab4.responsitory;
 
 import com.lab4.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Service
+@Repository
 public interface UserRespository extends JpaRepository<User,Long> {
-    User findByUserName(String name);
+    User findByUsername(String name);
 
 }

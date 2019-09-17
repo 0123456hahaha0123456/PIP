@@ -1,9 +1,8 @@
 package com.lab4.controllers;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import java.security.Principal;
 
 @RestController
@@ -23,5 +22,4 @@ public class MainController {
     public String index(){
         return "index.html";
     }
-
 }

@@ -3,28 +3,29 @@ package com.lab4.controllers;
 import com.lab4.entities.User;
 import com.lab4.model.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
 @RestController
+@CrossOrigin
+@RequestMapping(value="/auth")
 public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(value="/users")
+    @GetMapping("/get")
     public List<User> userList(){
         return userService.getAllUsers();
     }
 
-    @PostMapping(value="/user")
-    public String publishUser(@RequestBody User user) {
+    @PostMapping("/add")
+    @ResponseBody
+    public User publishUser(@RequestBody User user) {
+        System.out.println("duc dep trai");
         userService.insert(user);
-        return "Point was published";
+        System.out.println("yeu em");
+        return user;
     }
-
-
 }

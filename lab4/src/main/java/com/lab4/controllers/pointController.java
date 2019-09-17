@@ -9,19 +9,17 @@ import java.lang.String;
 import java.util.List;
 
 @RestController
+@RequestMapping(value="/point")
 public class pointController {
-
     @Autowired
     private PointService pointService;
 
-
-
-    @GetMapping(value="/points")
+    @GetMapping(value = "/get")
     public List<Point> points(){
         return pointService.getAllPoints();
     }
 
-    @PostMapping(value="/point")
+    @PostMapping(path="/add", consumes = "application/json", produces = "application/json")
     public String publishPoint(@RequestBody Point point){
         pointService.insert(point);
         return "Point was published";

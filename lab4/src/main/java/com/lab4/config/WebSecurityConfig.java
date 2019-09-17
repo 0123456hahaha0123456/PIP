@@ -7,8 +7,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.sql.DataSource;
@@ -26,18 +26,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
-        auth.jdbcAuthentication().dataSource(dataSource)
-                .usersByUsernameQuery("select username, password, enabled from User where username=?")
-                .authoritiesByUsernameQuery("select username, role from ");
-
+      /*  auth.jdbcAuthentication().dataSource(dataSource)
+                .passwordEncoder(NoOpPasswordEncoder.getInstance())
+                .usersByUsernameQuery("select username, password, enabled from user_entity where username=?")
+                .authoritiesByUsernameQuery("select username,role from role where username=?");*/
     }
 
     protected void configure(HttpSecurity http) throws Exception{
         http
-                //???? .csrf().disable()
+                .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/login","/register","/points","/point","/users","/user","/js","/css").permitAll()
-                    .antMatchers("/").hasRole("USER")
+                    .antMatchers("/","/username","/index","/auth","/auth/add","/auth/get","/point","/point/add","/point/get").permitAll()
+                    //.antMatchers("/").hasRole("USER")
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()
@@ -49,5 +49,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                 .exceptionHandling()
                     .accessDeniedPage("/403");
+
     }
 }

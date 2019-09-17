@@ -4,20 +4,21 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
+
 @Entity
-@Table(name="User")
+@Table(name="user_entity")
 public class User implements Serializable {
-    public User(){}
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
     private String username;
     private String password;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Role> role;
+
+    public User(){}
 
     public User(String username, String password, List<Role> role){
         this.username = username;

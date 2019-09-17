@@ -24,10 +24,12 @@ public class UserService {
 
     public void insert(User user){
         user.setPassword(getPasswordEncoder().encode(user.getPassword()));
+        //System.out.println("model");
         userRespository.save(user);
+       // System.out.println("model done");
     }
 
     public User getUser(String name){
-        return userRespository.findByUserName(name);
+        return userRespository.findByUsername(name);
     }
 }
