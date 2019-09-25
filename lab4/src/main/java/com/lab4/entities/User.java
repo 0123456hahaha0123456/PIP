@@ -2,7 +2,9 @@ package com.lab4.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -14,16 +16,20 @@ public class User implements Serializable {
     private long id;
     private String username;
     private String password;
+    private Role role;
+    private boolean enabled;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Role> role;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)// read me
+    private List<Point> resultHistory ;
 
     public User(){}
 
-    public User(String username, String password, List<Role> role){
+    public User(String username, String password){
         this.username = username;
         this.password = password;
-        this.role = role;
+        //this.setRole();
+        //this.enabled = true;
+        resultHistory = new ArrayList<>();
     }
 
     public long getId() {
@@ -38,7 +44,7 @@ public class User implements Serializable {
         return username;
     }
 
-    public List<Role> getRole(){ return role;}
+    public Role getRole(){ return role;}
 
     public void setId(long id) {
         this.id = id;
@@ -52,5 +58,22 @@ public class User implements Serializable {
         this.username = username;
     }
 
-    public void setRole(List<Role> role){this.role = role;}
+    public void setRole(){this.role = Role.USER;}
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public void setResultHistory(List<Point> resultHistory) {
+        this.resultHistory = resultHistory;
+    }
+
+    public List<Point> getResultHistory() throws NullPointerException {
+        if (resultHistory==null) resultHistory = new ArrayList<>() ;
+        return resultHistory;
+    }
 }

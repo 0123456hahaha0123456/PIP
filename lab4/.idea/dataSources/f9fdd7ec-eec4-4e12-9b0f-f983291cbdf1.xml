@@ -9,7 +9,7 @@
       <Comment>default administrative connection database</Comment>
       <StateNumber>567</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>2370</IntrospectionStateNumber>
+      <IntrospectionStateNumber>3191</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </database>
@@ -96,7 +96,7 @@
       <Comment>standard public schema</Comment>
       <StateNumber>360</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>2371</IntrospectionStateNumber>
+      <IntrospectionStateNumber>3192</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -165,234 +165,133 @@
       <SchemaId>11</SchemaId>
     </extension>
     <sequence id="26" parent="17" name="hibernate_sequence">
-      <ObjectId>18564</ObjectId>
-      <StateNumber>2357</StateNumber>
+      <ObjectId>20247</ObjectId>
+      <StateNumber>3187</StateNumber>
       <Owner>postgres</Owner>
       <SequenceIdentity>1</SequenceIdentity>
       <CacheSize>1</CacheSize>
       <DataType>bigint</DataType>
     </sequence>
     <table id="27" parent="17" name="point">
-      <ObjectId>18566</ObjectId>
+      <ObjectId>20249</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>2363</StateNumber>
+      <StateNumber>3190</StateNumber>
     </table>
-    <table id="28" parent="17" name="role">
-      <ObjectId>18571</ObjectId>
+    <table id="28" parent="17" name="user_entity">
+      <ObjectId>20254</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>2364</StateNumber>
+      <StateNumber>3190</StateNumber>
     </table>
-    <table id="29" parent="17" name="user_entity">
-      <ObjectId>18576</ObjectId>
-      <Owner>postgres</Owner>
-      <StateNumber>2363</StateNumber>
-    </table>
-    <table id="30" parent="17" name="user_entity_role">
-      <ObjectId>18584</ObjectId>
-      <Owner>postgres</Owner>
-      <StateNumber>2364</StateNumber>
-    </table>
-    <table id="31" parent="17" name="user_role">
-      <ObjectId>17259</ObjectId>
-      <Owner>postgres</Owner>
-      <StateNumber>1739</StateNumber>
-    </table>
-    <column id="32" parent="27" name="id">
+    <column id="29" parent="27" name="id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>2358</StateNumber>
+      <StateNumber>3188</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <column id="33" parent="27" name="is_hit">
+    <column id="30" parent="27" name="is_hit">
       <Position>2</Position>
       <DataType>boolean|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>2358</StateNumber>
+      <StateNumber>3188</StateNumber>
       <TypeId>16</TypeId>
     </column>
-    <column id="34" parent="27" name="valuer">
+    <column id="31" parent="27" name="valuer">
       <Position>3</Position>
       <DataType>double precision|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>2358</StateNumber>
+      <StateNumber>3188</StateNumber>
       <TypeId>701</TypeId>
     </column>
-    <column id="35" parent="27" name="valuex">
+    <column id="32" parent="27" name="valuex">
       <Position>4</Position>
       <DataType>double precision|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>2358</StateNumber>
+      <StateNumber>3188</StateNumber>
       <TypeId>701</TypeId>
     </column>
-    <column id="36" parent="27" name="valuey">
+    <column id="33" parent="27" name="valuey">
       <Position>5</Position>
       <DataType>double precision|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>2358</StateNumber>
+      <StateNumber>3188</StateNumber>
       <TypeId>701</TypeId>
     </column>
-    <column id="37" parent="27" name="user_id">
+    <column id="34" parent="27" name="user_id">
       <Position>6</Position>
       <DataType>bigint|0s</DataType>
-      <StateNumber>2358</StateNumber>
+      <StateNumber>3188</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <index id="38" parent="27" name="point_pkey">
-      <ObjectId>18569</ObjectId>
-      <StateNumber>2358</StateNumber>
+    <index id="35" parent="27" name="point_pkey">
+      <ObjectId>20252</ObjectId>
+      <StateNumber>3188</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="39" parent="27" name="point_pkey">
-      <ObjectId>18570</ObjectId>
-      <StateNumber>2358</StateNumber>
+    <key id="36" parent="27" name="point_pkey">
+      <ObjectId>20253</ObjectId>
+      <StateNumber>3188</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>point_pkey</UnderlyingIndexName>
     </key>
-    <foreign-key id="40" parent="27" name="fktbf51twa4tjnc14tgvfiainus">
-      <ObjectId>18589</ObjectId>
-      <StateNumber>2363</StateNumber>
+    <foreign-key id="37" parent="27" name="fktbf51twa4tjnc14tgvfiainus">
+      <ObjectId>20262</ObjectId>
+      <StateNumber>3190</StateNumber>
       <ColNames>user_id</ColNames>
-      <RefTableId>18576</RefTableId>
+      <RefTableId>20254</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>user_entity</RefTableName>
       <RefKeyName>user_entity_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="41" parent="28" name="id">
+    <column id="38" parent="28" name="id">
       <Position>1</Position>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>2359</StateNumber>
+      <StateNumber>3189</StateNumber>
       <TypeId>20</TypeId>
     </column>
-    <column id="42" parent="28" name="role">
+    <column id="39" parent="28" name="enabled">
       <Position>2</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <StateNumber>2359</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <index id="43" parent="28" name="role_pkey">
-      <ObjectId>18574</ObjectId>
-      <StateNumber>2359</StateNumber>
-      <ColNames>id</ColNames>
-      <Unique>1</Unique>
-      <Primary>1</Primary>
-    </index>
-    <key id="44" parent="28" name="role_pkey">
-      <ObjectId>18575</ObjectId>
-      <StateNumber>2359</StateNumber>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-      <UnderlyingIndexName>role_pkey</UnderlyingIndexName>
-    </key>
-    <column id="45" parent="29" name="id">
-      <Position>1</Position>
-      <DataType>bigint|0s</DataType>
+      <DataType>boolean|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>2360</StateNumber>
-      <TypeId>20</TypeId>
+      <StateNumber>3189</StateNumber>
+      <TypeId>16</TypeId>
     </column>
-    <column id="46" parent="29" name="password">
-      <Position>2</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <StateNumber>2360</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="47" parent="29" name="username">
+    <column id="40" parent="28" name="password">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>2360</StateNumber>
+      <StateNumber>3189</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="48" parent="29" name="user_entity_pkey">
-      <ObjectId>18582</ObjectId>
-      <StateNumber>2360</StateNumber>
+    <column id="41" parent="28" name="role">
+      <Position>4</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>3189</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="42" parent="28" name="username">
+      <Position>5</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>3189</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="43" parent="28" name="user_entity_pkey">
+      <ObjectId>20260</ObjectId>
+      <StateNumber>3189</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="49" parent="29" name="user_entity_pkey">
-      <ObjectId>18583</ObjectId>
-      <StateNumber>2360</StateNumber>
+    <key id="44" parent="28" name="user_entity_pkey">
+      <ObjectId>20261</ObjectId>
+      <StateNumber>3189</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>user_entity_pkey</UnderlyingIndexName>
-    </key>
-    <column id="50" parent="30" name="user_id">
-      <Position>1</Position>
-      <DataType>bigint|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>2361</StateNumber>
-      <TypeId>20</TypeId>
-    </column>
-    <column id="51" parent="30" name="role_id">
-      <Position>2</Position>
-      <DataType>bigint|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>2361</StateNumber>
-      <TypeId>20</TypeId>
-    </column>
-    <index id="52" parent="30" name="uk_lubu5auf4bujgmat9hwqocejj">
-      <ObjectId>18587</ObjectId>
-      <StateNumber>2362</StateNumber>
-      <ColNames>role_id</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="53" parent="30" name="uk_lubu5auf4bujgmat9hwqocejj">
-      <ObjectId>18588</ObjectId>
-      <StateNumber>2362</StateNumber>
-      <ColNames>role_id</ColNames>
-      <UnderlyingIndexName>uk_lubu5auf4bujgmat9hwqocejj</UnderlyingIndexName>
-    </key>
-    <foreign-key id="54" parent="30" name="fkh1cmpmgkmi6cskrkn51pdsw44">
-      <ObjectId>18599</ObjectId>
-      <StateNumber>2365</StateNumber>
-      <ColNames>user_id</ColNames>
-      <RefTableId>18576</RefTableId>
-      <RefColPositions>1</RefColPositions>
-      <RefTableName>user_entity</RefTableName>
-      <RefKeyName>user_entity_pkey</RefKeyName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <foreign-key id="55" parent="30" name="fkewdydxghbcyro97ouj5mp7sn1">
-      <ObjectId>18594</ObjectId>
-      <StateNumber>2364</StateNumber>
-      <ColNames>role_id</ColNames>
-      <RefTableId>18571</RefTableId>
-      <RefColPositions>1</RefColPositions>
-      <RefTableName>role</RefTableName>
-      <RefKeyName>role_pkey</RefKeyName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <column id="56" parent="31" name="user_id">
-      <Position>1</Position>
-      <DataType>bigint|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1737</StateNumber>
-      <TypeId>20</TypeId>
-    </column>
-    <column id="57" parent="31" name="role_id">
-      <Position>2</Position>
-      <DataType>bigint|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1737</StateNumber>
-      <TypeId>20</TypeId>
-    </column>
-    <index id="58" parent="31" name="uk_it77eq964jhfqtu54081ebtio">
-      <ObjectId>17262</ObjectId>
-      <StateNumber>1738</StateNumber>
-      <ColNames>role_id</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="59" parent="31" name="uk_it77eq964jhfqtu54081ebtio">
-      <ObjectId>17263</ObjectId>
-      <StateNumber>1738</StateNumber>
-      <ColNames>role_id</ColNames>
-      <UnderlyingIndexName>uk_it77eq964jhfqtu54081ebtio</UnderlyingIndexName>
     </key>
   </database-model>
 </dataSource>

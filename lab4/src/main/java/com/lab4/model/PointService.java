@@ -1,6 +1,7 @@
 package com.lab4.model;
 
 import com.lab4.entities.Point;
+import com.lab4.entities.User;
 import com.lab4.responsitory.PointRespository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,10 @@ public class PointService {
 
     public List<Point> getAllPoints(){
         return pointRespository.findAll();
+    }
+
+    public List<Point> findAllByUser(User user){
+        return pointRespository.findAllByUser(user);
     }
     public void insert(Point point){
         pointRespository.save(point);

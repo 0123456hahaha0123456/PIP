@@ -3,7 +3,6 @@ package com.lab4.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 
-
 @Entity
 @Table(name="point")
 public class Point implements Serializable {
@@ -17,7 +16,7 @@ public class Point implements Serializable {
     private double valueR;
     private boolean isHit;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private User user;
 
     public void setValueX(double valueX) {
@@ -58,7 +57,7 @@ public class Point implements Serializable {
         return isHit;
     }
 
-    public User getUser() {
+    public User getUser(){
         return user;
     }
 
