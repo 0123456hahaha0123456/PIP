@@ -6,12 +6,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+
 
 import javax.sql.DataSource;
 
@@ -20,6 +18,7 @@ import javax.sql.DataSource;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
+
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
@@ -32,7 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/","/username","/login","/index","/auth/*","/point","/point/*").permitAll()
+                    .antMatchers("/","/username","/login","/test_register","/register","/auth/**","/point","/point/**","/js/**","/css/**").permitAll()
                     //.antMatchers("/username").hasRole("USER")
                     .anyRequest().authenticated()
                     .and()
@@ -41,8 +40,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .usernameParameter("username")
                     .passwordParameter("password")
                     .loginProcessingUrl("/doLogin")
-                    .defaultSuccessUrl("/username")
+                    .defaultSuccessUrl("/main")
                     .failureUrl("/login?error")
+                    .and()
+                .logout()
+                    .logoutSuccessUrl("/login")
                     .and()
                 .exceptionHandling()
                     .accessDeniedPage("/403");

@@ -2,18 +2,19 @@ package com.lab4.controllers;
 
 import com.lab4.entities.Point;
 import com.lab4.entities.User;
+import com.lab4.entities.pointRes;
 import com.lab4.model.PointService;
 import com.lab4.model.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-
 import java.lang.String;
-import java.lang.reflect.Array;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http:localhost/8081")
 @RequestMapping(value="/point")
 public class pointController {
     @Autowired
@@ -22,27 +23,35 @@ public class pointController {
     @Autowired
     private UserService userService;
 
+    //private Principal principal;
    // @GetMapping(value = "/get")
     public List<Point> points(){
         return pointService.getAllPoints();
-
     }
 
-    @PostMapping(path="/add", consumes = "application/json", produces = "application/json")
-    public void publishPoint(@RequestBody Point point,Principal principal) throws NullPointerException{// fix me
-        if (!checkPoint(point)) return;
+    //@PostMapping(consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @PostMapping
+    public Point publishPoint(@RequestBody Point point,Principal principal) throws NullPointerException{// fix me
+        System.out.println(point.getValueX());
+        System.out.println(point.getValueY());
+        System.out.println(point.getValueR());
+
+       // this.principal = principal;
+       // if (!checkPoint(point)) return null;
         point.setIsHit(_isHit(point));
         //System.out.println(principal.getName());
         User user = getUser(principal.getName());
+        //get list point of this user
+        //List<Point> addListPoints = user.getResultHistory();
+        //addListPoints.add(point);
+        //user.setResultHistory(addListPoints);
 
-        List<Point> addListPoints = user.getResultHistory();
-        addListPoints.add(point);
-        user.setResultHistory(addListPoints);
-
-
-        userService.insert(user);
-        point.setUser(user);
+        //userService.insert(user);
+        //point.setUser(user);
+        point.setUsername(user.getUsername());
         pointService.insert(point);
+        //return this.getData(principal);
+        return point;
     }
 
     private boolean checkPoint(Point point){
@@ -63,7 +72,7 @@ public class pointController {
         boolean isHit = false;
         if (x>=0 && y>=0){ if (x*x + y*y <= r*r) isHit = true; }
         else if (x>=0 && y<0){ if (2*x <= (r+y)) isHit = true; }
-        else if (x<0 & y>0) { if (x>=r && y>=r/2) isHit= true; }
+        else if (x<0 && y<0) { if (x>=-r && y>=-r/2) isHit= true; }
         return isHit;
     }
 
@@ -77,10 +86,13 @@ public class pointController {
         }
         return null;
     }
-    @GetMapping(value = "/get")
+
+    @GetMapping("/get")
+    @ResponseBody
     public List<Point> getData(Principal principal){
         User user = getUser(principal.getName());
-        List<Point> points = pointService.findAllByUser(user);
+        //List<Point> points = pointService.findAllByUser(user);
+        List<Point> points = pointService.findByUsername(user.getUsername());
         ArrayList<Point> data = new ArrayList<>();
         for (Point tmp: points) {
             data.add(tmp);
@@ -88,4 +100,16 @@ public class pointController {
         return data;
     }
 
+    @GetMapping("/update/{r}")
+    public List<pointRes> getAllUpdated(@PathVariable double r, Principal principal){
+        User user = getUser(principal.getName());
+        List<Point> reqResult = pointService.findByUsername(user.getUsername());
+        List<pointRes> points = new ArrayList<>();
+        reqResult.forEach(it-> {
+            if (it.getValueR()==r) points.add(new pointRes(it.getValueX(), it.getValueY(), it.getIsHit()));
+
+        });
+        return points;
+    }
 }
+

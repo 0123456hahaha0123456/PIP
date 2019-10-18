@@ -18,8 +18,12 @@ public class PointService {
         return pointRespository.findAll();
     }
 
-    public List<Point> findAllByUser(User user){
-        return pointRespository.findAllByUser(user);
+  //  public List<Point> findAllByUser(User user){
+        //return pointRespository.findAllByUser(user);
+    //}
+
+    public List<Point> findByUsername(String username) {
+        return pointRespository.findAllByUsernameOrderById(username);
     }
     public void insert(Point point){
         pointRespository.save(point);

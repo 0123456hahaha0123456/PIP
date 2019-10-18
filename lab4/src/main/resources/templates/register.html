@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+    <title>Registration</title>
+</head>
+<body>
+<div id="register">
+    <app-header></app-header>
+    <app-register></app-register>
+
+</div>
+
+<template id="register-template">
+    <div class="border main">
+        <form class="register" action="/auth/register" method="POST" enctype="application/x-www-form-urlencoded" accept-charset="UTF-8">
+            <br/>
+            <br/>
+            <label id="user-name-label">Username</label>
+            <input type="text" id="username"  name ="username"/>
+            <label id="invalidUser" style="color: red"></label>
+            <br/>
+
+            <br/>
+          <!--  <label for="password">
+                <span class="register-span">password:</span>
+                <input type="password" class="text" id="password"  name="password"/>
+            </label>
+            <!- <span v-if="response.success">{{response.message}}</span> -->
+            <label id="pass-word-label">Password</label>
+            <input type="password" id="password"  name ="password"/>
+            <label id="invalidPass" style="color: red"></label>
+            <br/>
+
+            <br/>
+            <input id="submit" type="submit" @click="checkString" value="Register"/>
+            <div>If you already have an account, <a href="/login">Login</a> now!</div>
+        </form>
+    </div>
+</template>
+
+<template id="header-template">
+    <div class="block" id="names">
+        <h3>Лабораторная работа № 4</h3> <br/> <span class="left_meta"> Вариант: 331 </span><br/>
+        <span class="right_meta"> Tran Trung Duc</span> <br/>
+        <span class="right_meta"> Le Tuan Dung </span> <br/>
+        <span class="left_meta"> Группа: P3302/P3300</span>
+    </div>
+</template>
+
+<script>
+    /*
+    const userApi = Vue.resource('/auth/register')
+    Vue.component('app-register',{
+        template: '#register-template',
+        data: function(){
+            return {
+                username: '',
+                password: '',
+                response:{
+                    success : '',
+                    message : ''
+                }
+
+            }
+
+        },
+        methods: {
+            register : function(){
+                var user ={
+                    'username' : this.username,
+                    'password' : this.password
+                };
+                userApi.save({}, user).then(result =>
+                        result.json().then(data => {
+                            var tmp = data;
+                            this.response.message = tmp.json().message;
+                            this.response.success = tmp.json().success;
+                        }),
+                    result=>{
+                    });
+              /*  this.$http.post('http://localhost:8081/auth/register', user).then((response) => {
+                    const tmp = JSON.parse(response.data.data);
+                    this.response.success = tmp[0].success;
+                    this.response.message = tmp[0].message;
+                },(response) => {
+                    this.response = response;
+                    this.response = response;
+                    //this.response.message = response.json()[0].message;
+                    //this.response.success = response.json()[0].success;
+                });
+            }
+        }
+    });
+*/
+    Vue.component('app-register', {
+        template: '#register-template',
+        methods:{
+            checkString: function(e) {
+
+                var username = document.getElementById("username").value;
+                var password = document.getElementById("password").value;
+                if (username == null || username ==""){
+                    document.getElementById('invalidUser').textContent="Please input username";
+                    e.preventDefault();
+                    return;
+                }
+                else if (password==null || password==""){
+                    document.getElementById('invalidUser').textContent="";
+                    document.getElementById('invalidPass').textContent="Please input password";
+                    e.preventDefault();
+                    return;
+                }
+                else{
+                    document.getElementById('invalidUser').textContent="";
+                    document.getElementById('invalidPass').textContent="";
+                    document.getElementById('submit').disabled=false;
+                }
+
+            }
+        }
+    });
+
+    Vue.component('app-header',{
+        template: '#header-template'
+    });
+
+    let app = new Vue({
+        el: '#register',
+        // data: {
+        //     error: magic_data.error
+        // }
+    });
+    /*
+    new Vue({
+
+        el: '#register',
+
+        template: '#register-template',
+        data: {
+            username: '',
+            password: '',
+
+            response: {
+                success: false,
+                message: ''
+            }
+        },
+        methods: {
+            register: function (e) {
+                e.preventDefault();
+                this.response.message = '';
+               // this.passHash = md5(this.password);
+                var details = {
+                    'username': this.username,
+                    'password': this.password
+                };
+
+                fetch('/auth/register', {
+                    method: 'post',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                    },
+                    body: details
+                })  .then(response => {
+                    if (response.url.endsWith('error')) {
+                        this.response.message = 'Wrong login or password, try again';
+                    } else {
+                        window.location.replace(response.url);
+                    }
+                })
+                    .then(obj => console.log(obj));
+            }
+        }
+    })*/
+
+</script>
+</body>
+</html>

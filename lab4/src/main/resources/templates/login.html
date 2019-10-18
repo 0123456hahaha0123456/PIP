@@ -1,20 +1,89 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Spring Security Example </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script th:inline="javascript">const magic_data = [[${magic_data}]];</script>
+    <title>Login</title>
 </head>
 <body>
-<div th:if="${param.error}">
-    Invalid username and password.
+<div id="app">
+    <app-header></app-header>
+    <app-login></app-login>
 </div>
-<div th:if="${param.logout}">
-    You have been logged out.
-</div>
-<form th:action="doLogin" method="post" enctype="application/x-www-form-urlencoded" accept-charset="UTF-8"/>
-    <div><label> UserName : <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Sign In"/></div>
-</form>
+
+<template id="login-template">
+    <div class="border main">
+        <form class="login" action="doLogin" method="POST" enctype="application/x-www-form-urlencoded" accept-charset="UTF-8">
+            <br/>
+            <br/>
+            <label id="user-name-label">Username</label>
+            <input type="text" id="username"  name ="username"/>
+            <label id="invalidUser" style="color: red"></label>
+            <br/>
+            <br/>
+            <label id="pass-word-label">Password</label>
+            <input type="password" id="password"  name ="password"/>
+            <label id="invalidPass" style="color: red"></label>
+            <br/>
+
+            <br/>
+            <input id="submit" type="submit" @click="checkString" value="Login"/>
+            <div>If you already have an account, <a href="/">Register</a> now!</div>
+        </form>
+    </div>
+</template>
+
+
+<template id="header-template">
+    <div class="block" id="names">
+        <h3>Лабораторная работа № 4</h3> <br/> <span class="left_meta"> Вариант: 331 </span><br/>
+        <span class="right_meta"> Tran Trung Duc</span> <br/>
+        <span class="right_meta"> Le Tuan Dung </span> <br/>
+        <span class="left_meta"> Группа: P3302/P3300</span>
+    </div>
+</template>
+
+<script>
+    Vue.component('app-login', {
+        template: '#login-template',
+        methods:{
+            checkString: function(e) {
+
+                var username = document.getElementById("username").value;
+                var password = document.getElementById("password").value;
+                if (username == null || username ==""){
+                    document.getElementById('invalidUser').textContent="Please input username";
+                    e.preventDefault();
+                    return;
+                }
+                else if (password==null || password==""){
+                    document.getElementById('invalidUser').textContent="";
+                    document.getElementById('invalidPass').textContent="Please input password";
+                    e.preventDefault();
+                    return;
+                }
+                else{
+                    document.getElementById('invalidUser').textContent="";
+                    document.getElementById('invalidPass').textContent="";
+                    document.getElementById('submit').disabled=false;
+                }
+            }
+        }
+    });
+
+    Vue.component('app-header',{
+        template: '#header-template'
+    });
+
+    let app = new Vue({
+        el: '#app',
+        // data: {
+        //     error: magic_data.error
+        // }
+    });
+</script>
+
 </body>
 </html>

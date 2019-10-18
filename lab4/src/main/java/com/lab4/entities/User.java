@@ -10,7 +10,6 @@ import java.util.Set;
 @Entity
 @Table(name="user_entity")
 public class User implements Serializable {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -19,17 +18,11 @@ public class User implements Serializable {
     private Role role;
     private boolean enabled;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)// read me
-    private List<Point> resultHistory ;
-
     public User(){}
 
     public User(String username, String password){
         this.username = username;
         this.password = password;
-        //this.setRole();
-        //this.enabled = true;
-        resultHistory = new ArrayList<>();
     }
 
     public long getId() {
@@ -68,12 +61,5 @@ public class User implements Serializable {
         this.enabled = enabled;
     }
 
-    public void setResultHistory(List<Point> resultHistory) {
-        this.resultHistory = resultHistory;
-    }
 
-    public List<Point> getResultHistory() throws NullPointerException {
-        if (resultHistory==null) resultHistory = new ArrayList<>() ;
-        return resultHistory;
-    }
 }

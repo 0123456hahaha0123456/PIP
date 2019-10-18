@@ -1,23 +1,38 @@
 package com.lab4.entities;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
 @Table(name="point")
 public class Point implements Serializable {
     public Point(){}
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    long id;
 
-    private double valueX;
-    private double valueY;
-    private double valueR;
-    private boolean isHit;
+    @NotNull
+    double valueX;
+    @NotNull
+    double valueY;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private User user;
+    @NotNull
+    double valueR;
+    @NotNull
+    boolean isHit;
+
+    @NotNull
+    String username;
+
+    public Point(double x,double y, double r, boolean isHit){
+        this.valueX = x;
+        this.valueY = y;
+        this.valueR = r;
+        this.isHit = isHit;
+    }
 
     public void setValueX(double valueX) {
         this.valueX = valueX;
@@ -32,10 +47,6 @@ public class Point implements Serializable {
     }
 
     public void setIsHit(boolean isHit){ this.isHit = isHit;}
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     public long getId() {
         return id;
@@ -57,8 +68,16 @@ public class Point implements Serializable {
         return isHit;
     }
 
-    public User getUser(){
-        return user;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public String toString(){
+        return (valueX+ " " + valueY + " " + valueR);
+    }
 }

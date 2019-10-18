@@ -11,5 +11,6 @@ import java.util.List;
 @Repository
 public interface PointRespository extends JpaRepository<Point,Long> {
     ArrayList<Point> findAllById(Long id);
-    List<Point> findAllByUser(User user);
+    //List<Point> findAllByUser(User user);
+    List<Point> findAllByUsernameOrderById(String username);
 }
