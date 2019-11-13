@@ -3,9 +3,9 @@
 
 >We input coordinats {x,y} of point, and using technologies of web program, we check and return if this point is in the area or not.
 
-
-> ![alt text](https://github.com/0123456hahaha0123456/PIP/blob/master/git_pip.png)
-
+<p align="center"> 
+<img src="https://github.com/0123456hahaha0123456/PIP/blob/master/git_pip.png">
+</p>
 
 >Technologies : 
 
